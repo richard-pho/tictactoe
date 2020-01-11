@@ -83,22 +83,20 @@ def listen(Screen, w, h):
         t.goto(x,y)
         t.pendown()
         t.penup()
+        checkerX = None
+        checkerO = None
         if t.xcor()>300 and t.xcor()<350 and t.ycor()>100 and t.ycor()<150:
-            if ybool:
-                window.onclick(None)
-                window.onclick(X)
-            else:
-                window.onclick(X)
+            checkerX = True
+            checkerO = False
+            window.onscreenclick(X,add=checkerX)
         elif t.xcor()>300 and t.xcor()<350 and t.ycor()>50 and t.ycor()<100:
-            if xbool:
-                window.onclick(None)
-                window.onclick(O)
-            else:
-                window.onclick(O)
+            checkerY = True
+            checkerX = False
+            window.onscreenclick(O,add=checkerY)
     t = turtle.Turtle()
     t.speed('fastest')
     makeBoard()
-    window.onclick(button)
+    window.onscreenclick(button)
 window = turtle.Screen()
 width = 500
 height = 500
