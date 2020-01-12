@@ -43,21 +43,6 @@ def listen(Screen, w, h):
         t.pendown()
         t.forward(150)
         t.penup()
-        x = 150
-        t.goto(300,x)
-        i = 0;
-        while i<2:
-            t.pendown()
-            makeSqaure(50)
-            x = x - 50
-            t.goto(300,x)
-            i=i+1
-        makeX(300,150,50)
-        t.penup()
-        t.goto(325,100)
-        t.pendown()
-        t.circle(-20)
-        t.penup()
         t.goto(300,50)
         t.fillcolor('pink')
         t.pendown()
@@ -70,33 +55,39 @@ def listen(Screen, w, h):
         t.pendown()
         makeX(x,y,10)
         t.penup()
-        xbool = True
     def O(x,y):
         t.penup()
         t.goto(x,y)
         t.pendown()
         t.circle(10)
         t.penup()
-        ybool = True
+    def checkx():
+        global check
+        check = 'X'
+    def checko():
+        global check
+        check = 'O'
     def button(x,y):
+        global check
         t.penup()
         t.goto(x,y)
         t.pendown()
+        if t.xcor() > -50 and t.xcor() < 100 and t.ycor() > 0 and t.ycor() < 150:
+            if check == 'X':
+                X(x,y)
+            elif check == 'O':
+                O(x,y)
+            else:
+                print(x,y)
+        else:
+            print(x,y)
         t.penup()
-        checkerX = None
-        checkerO = None
-        if t.xcor()>300 and t.xcor()<350 and t.ycor()>100 and t.ycor()<150:
-            checkerX = True
-            checkerO = False
-            window.onscreenclick(X,add=checkerX)
-        elif t.xcor()>300 and t.xcor()<350 and t.ycor()>50 and t.ycor()<100:
-            checkerY = True
-            checkerX = False
-            window.onscreenclick(O,add=checkerY)
     t = turtle.Turtle()
     t.speed('fastest')
     makeBoard()
-    window.onscreenclick(button)
+    window.onclick(button)
+    window.onkey(checkx,'x')
+    window.onkey(checko,'o')
 window = turtle.Screen()
 width = 500
 height = 500
