@@ -23,6 +23,8 @@ def listen(Screen, w, h):
         t.write('1)press x to place an x',font=("arial",12,"normal"))
         t.goto(-300,125)
         t.write('2)press o to place an o',font=("arial",12,"normal"))
+        t.goto(-300,100)
+        t.write('3)press q to exit',font=("arial",12,"normal"))
         t.goto(0,0)
         t.penup()
         t.left(90)
@@ -79,6 +81,9 @@ def listen(Screen, w, h):
         t.pendown()
         t.circle(10)
         t.penup()
+    def playagain():
+        t.clear()
+        makeBoard()
     def checkx():
         global check
         check = 'X'
@@ -92,7 +97,9 @@ def listen(Screen, w, h):
         t.penup()
         t.goto(x,y)
         t.pendown()
-        if t.xcor() > -50 and t.xcor() < 100 and t.ycor() > 0 and t.ycor() < 150:
+        if t.xcor() > 300 and t.xcor()< 350 and t.ycor() >100 and t.ycor() < 150:
+            playagain()
+        elif t.xcor() > -50 and t.xcor() < 100 and t.ycor() > 0 and t.ycor() < 150:
             if check == 'X':
                 X(x,y)
             elif check == 'O':
