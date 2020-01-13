@@ -19,6 +19,12 @@ def listen(Screen, w, h):
         t.goto(x,y-size)
     def makeBoard():
         t.penup()
+        t.goto(-300,150)
+        t.write('1)press x to place an x',font=("arial",12,"normal"))
+        t.goto(-300,125)
+        t.write('2)press o to place an o',font=("arial",12,"normal"))
+        t.goto(0,0)
+        t.penup()
         t.left(90)
         t.left(90)
         t.forward(50)
@@ -43,6 +49,18 @@ def listen(Screen, w, h):
         t.pendown()
         t.forward(150)
         t.penup()
+        t.goto(300,150)
+        t.pendown()
+        makeSqaure(50)
+        t.penup()
+        t.goto(305,125)
+        t.write('play again',font=("arial",7,"normal"))
+        t.goto(300,100)
+        t.pendown()
+        makeSqaure(50)
+        t.penup()
+        t.goto(305,75)
+        t.write('Undo',font=("arial",7,"normal"))
         t.goto(300,50)
         t.fillcolor('pink')
         t.pendown()
@@ -67,6 +85,8 @@ def listen(Screen, w, h):
     def checko():
         global check
         check = 'O'
+    def finish():
+        window.bye()
     def button(x,y):
         global check
         t.penup()
@@ -80,7 +100,7 @@ def listen(Screen, w, h):
             else:
                 print(x,y)
         else:
-            print(x,y)
+            print("place x or o on the board")
         t.penup()
     t = turtle.Turtle()
     t.speed('fastest')
@@ -88,6 +108,7 @@ def listen(Screen, w, h):
     window.onclick(button)
     window.onkey(checkx,'x')
     window.onkey(checko,'o')
+    window.onkey(finish,'q')
 window = turtle.Screen()
 width = 500
 height = 500
