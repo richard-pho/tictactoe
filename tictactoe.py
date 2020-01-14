@@ -1,3 +1,4 @@
+
 import turtle
 def listen(Screen, w, h):
     xbool = False
@@ -63,12 +64,7 @@ def listen(Screen, w, h):
         t.penup()
         t.goto(305,75)
         t.write('Undo',font=("arial",7,"normal"))
-        t.goto(300,50)
-        t.fillcolor('pink')
-        t.pendown()
-        t.begin_fill()
-        makeSqaure(50)
-        t.end_fill()
+        t.setundobuffer(100)
     def X(x,y):
         t.penup()
         t.goto(x,y)
@@ -92,6 +88,16 @@ def listen(Screen, w, h):
         check = 'O'
     def finish():
         window.bye()
+    def undo():
+        global check
+        if check == 'X':
+            for i in range(8):
+                t.undo()
+        elif check == 'O':
+            for i in range(4):
+                t.undo()
+        else:
+            print('nothing to undo')
     def button(x,y):
         global check
         t.penup()
@@ -99,6 +105,8 @@ def listen(Screen, w, h):
         t.pendown()
         if t.xcor() > 300 and t.xcor()< 350 and t.ycor() >100 and t.ycor() < 150:
             playagain()
+        elif t.xcor() > 300 and t.xcor()< 350 and t.ycor() >50 and t.ycor() < 100:
+            undo()
         elif t.xcor() > -50 and t.xcor() < 100 and t.ycor() > 0 and t.ycor() < 150:
             if check == 'X':
                 X(x,y)
